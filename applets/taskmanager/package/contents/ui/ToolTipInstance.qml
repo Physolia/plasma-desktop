@@ -12,6 +12,7 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtGraphicalEffects 1.15
 
+import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -486,7 +487,7 @@ ColumnLayout {
         let subTextEntries = [];
 
         const onAllDesktops = (isGroup ? IsOnAllVirtualDesktops : isOnAllVirtualDesktopsParent) === true;
-        if (!plasmoid.configuration.showOnlyCurrentDesktop && virtualDesktopInfo.numberOfDesktops > 1) {
+        if (!Plasmoid.configuration.showOnlyCurrentDesktop && virtualDesktopInfo.numberOfDesktops > 1) {
             const virtualDesktops = isGroup ? VirtualDesktops : virtualDesktopParent;
 
             if (!onAllDesktops && virtualDesktops !== undefined && virtualDesktops.length > 0) {
@@ -520,7 +521,7 @@ ColumnLayout {
                 if (activityName === "") {
                     continue;
                 }
-                if (plasmoid.configuration.showOnlyCurrentActivity) {
+                if (Plasmoid.configuration.showOnlyCurrentActivity) {
                     if (activity !== activityInfo.currentActivity) {
                         activityNames.push(activityName);
                     }
@@ -529,7 +530,7 @@ ColumnLayout {
                 }
             }
 
-            if (plasmoid.configuration.showOnlyCurrentActivity) {
+            if (Plasmoid.configuration.showOnlyCurrentActivity) {
                 if (activityNames.length > 0) {
                     subTextEntries.push(i18nc("Activities a window is currently on (apart from the current one)",
                         "Also available on %1", activityNames.join(", ")));
